@@ -42,7 +42,7 @@ function scan(string::String, n::Int, x_length::Int=line_length, y_length::Int=n
     return hit
 end
 
-function find_numbers(schematic::String)
+function find_numbers(schematic::String, x_length::Int)
     numbers = Dict{String,Vector{Int}}()
     last_numeric = true
 
@@ -53,15 +53,15 @@ function find_numbers(schematic::String)
             last_numeric = true
             number *= char
             push!(positions, n)
-        else
+        end
+        
+        if (n + 1) % x_length == 0 || ~isdigit(char)
             if last_numeric
                 merge!(numbers, Dict(number=>positions))
                 number = ""
                 positions = Vector{Int}()
             end
             last_numeric = false
-            # copy number into numbers (with positions) if number not blank
-            # create blank number and positions
         end
     end
 
@@ -75,7 +75,7 @@ function find_hits(schematic::String)
 end
 
 hits = find_hits(schematic)
-numbers = find_numbers(schematic)
+numbers = find_numbers(schematic, line_length)
 
 total = 0
 for (number, number_positions) in numbers
@@ -86,7 +86,6 @@ for (number, number_positions) in numbers
         end
     end
     if hit
-        println(number)
         global total += parse(Int, number)
     end
 end
