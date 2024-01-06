@@ -5,12 +5,12 @@ using Distributed
 
 aps = ArgParseSettings()
 @add_arg_table aps begin
-    "--multi-threading"
-        help = "Enable multi-threaded mode (only recommended for large files)."
-        action = :store_true
     "infile"
         help = "Input file for calibration"
         required = true
+    "--multi-threading"
+        help = "Enable multi-threaded mode (only recommended for large files)."
+        action = :store_true
 end
 parsed_args = parse_args(ARGS, aps)
 
