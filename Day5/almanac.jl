@@ -60,8 +60,26 @@ function decode_almanac(almanac)
     return decoded_almanac
 end
 
+function construct_keylink(almanac)
+    keylink = Dict()
+    for key in keys(almanac)
+        if occursin("map", key)
+            _, dest_key = split(replace(key, " map"=>""), "-to-")
+            for target_key in keys(almanac)
+                if startswith(target_key, dest_key)
+                    keylink[key] = target_key
+                end
+            end
+        end
+        
+    end
+    return keylink
+end
+
 
 almanac = parse_almanac(lines)
 #println(almanac)
 almanac = decode_almanac(almanac)
-println(almanac)
+#println(almanac)
+keylink = construct_keylink(almanac)
+println(keylink)
