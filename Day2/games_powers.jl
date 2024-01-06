@@ -1,7 +1,6 @@
 #!/usr/local/bin/julia 
 
 using ArgParse
-using Distributed
 
 aps = ArgParseSettings()
 @add_arg_table aps begin
