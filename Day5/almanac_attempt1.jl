@@ -25,7 +25,7 @@ close(file)
 function parse_almanac(lines::Vector{String})
 
     lines = collect(Iterators.flatten(map(line -> split(line, ":"), lines)))
-    filter!((i) -> i != "", lines)
+    filter!(i -> i != "", lines)
 
     tag = ""
     contents = Vector{String}()

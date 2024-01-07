@@ -7,6 +7,5 @@ Progress:
 | ⭐️  | ⭐️  |    | ⭐️  |    | ⭐️  |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
 
 
-
 Concepts now understood in Julia:
     - [ ] Multi-processing
